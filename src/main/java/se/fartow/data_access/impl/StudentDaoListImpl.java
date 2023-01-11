@@ -10,6 +10,7 @@ import java.util.List;
 @Component
 public class StudentDaoListImpl implements StudentDao {
 
+
     private List<Student> storage = new ArrayList<>();
 
     @Override

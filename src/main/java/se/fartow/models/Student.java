@@ -7,8 +7,8 @@ public class Student {
     private int id;
     private String name;
 
-    public Student(String name) {
-        this.id = Integer.parseInt(UUID.randomUUID().toString());
+    public Student(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
