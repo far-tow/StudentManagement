@@ -6,25 +6,34 @@ import se.fartow.models.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class StudentDaoListImpl implements StudentDao {
 
 
-    private List<Student> storage = new ArrayList<>();
+    List<Student> storage = new ArrayList<>();
 
     @Override
     public Student save(Student student) {
         if (student == null) throw new IllegalArgumentException("Student was null");
-        storage.add(student);
+        if (student.getId() != 0){
+            storage.add(student);
+        }else {
+            storage.forEach(element ->{if (element.getId() == student.getId()) element.setName(student.getName());});
+        }
+        //storage.add(student);
         return student;
     }
 
     @Override
     public Student find(int id) {
-        if (id == 0) throw new IllegalArgumentException("Id was null");
-        return (Student) storage.stream()
-                .filter(student -> student.getId() == id);
+       if (id == 0) throw new IllegalArgumentException("Id was null");
+
+       Optional<Student> student= storage.stream()
+                .filter(student1 -> student1.getId() == id)
+                .findFirst();
+        return student.orElse(null);
     }
 
     @Override

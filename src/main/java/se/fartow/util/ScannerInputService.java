@@ -12,13 +12,12 @@ public class ScannerInputService implements UserInputService{
 Scanner scanner;
     @Override
     public String getString() {
-
         return scanner.nextLine();
     }
 
     @Override
     public int getInt() {
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
 }
