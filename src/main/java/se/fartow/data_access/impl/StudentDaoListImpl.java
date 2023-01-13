@@ -17,10 +17,12 @@ public class StudentDaoListImpl implements StudentDao {
     @Override
     public Student save(Student student) {
         if (student == null) throw new IllegalArgumentException("Student was null");
-        if (student.getId() != 0){
+        if (student.getId() != 0) {
             storage.add(student);
-        }else {
-            storage.forEach(element ->{if (element.getId() == student.getId()) element.setName(student.getName());});
+        } else {
+            storage.forEach(element -> {
+                if (element.getId() == student.getId()) element.setName(student.getName());
+            });
         }
         //storage.add(student);
         return student;
@@ -28,9 +30,8 @@ public class StudentDaoListImpl implements StudentDao {
 
     @Override
     public Student find(int id) {
-       if (id == 0) throw new IllegalArgumentException("Id was null");
-
-       Optional<Student> student= storage.stream()
+        if (id == 0) throw new IllegalArgumentException("Id was null");
+        Optional<Student> student = storage.stream()
                 .filter(student1 -> student1.getId() == id)
                 .findFirst();
         return student.orElse(null);
@@ -43,6 +44,7 @@ public class StudentDaoListImpl implements StudentDao {
 
     @Override
     public void delete(int id) {
-    storage.remove(id);
+        Student student = find(id);
+        storage.remove(student);
     }
 }

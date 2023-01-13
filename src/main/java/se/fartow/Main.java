@@ -20,9 +20,12 @@ public class Main
         Student createdStudent = studentManagementConsole.create();
         Student createdStudent1= studentManagementConsole.create();
         System.out.println( studentManagementConsole.save(createdStudent));
+        System.out.println(studentManagementConsole.save(createdStudent1));
+
+
 
         //find by id
-        System.out.println(studentManagementConsole.find(createdStudent.getId()));
+        //System.out.println(studentManagementConsole.find(createdStudent.getId()));
 
         //find all
         studentManagementConsole.findAll().forEach(System.out::println);
@@ -34,7 +37,10 @@ public class Main
         System.out.println(studentManagementConsole.find(createdStudent1.getId()));
 
         //remove student by id
-        //studentManagementConsole.remove(createdStudent.getId());
+        studentManagementConsole.remove(createdStudent.getId());
+
+        studentManagementConsole.findAll().forEach(System.out::println);
+
 
 
 

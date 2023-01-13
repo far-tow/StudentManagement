@@ -52,6 +52,7 @@ public class StudentManagementConsoleImpl implements StudentManagement {
     @Override
     public Student remove(int id) {
         Student result = find(id);
+        if (result == null) throw new IllegalArgumentException("No object was found to remove");
         studentDao.delete(id);
         return result;
     }
